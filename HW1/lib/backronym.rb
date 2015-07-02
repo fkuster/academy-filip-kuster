@@ -51,4 +51,10 @@ def dictionary
 end
 
 def make_backronym(string)
+  result=""
+  string.upcase!
+  char_array=string.split("")
+  char_array.each{|char| result+="#{dictionary[char]} "}
+  return result.strip
 end
+make_backronym("abc")
