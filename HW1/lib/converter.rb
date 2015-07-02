@@ -9,7 +9,6 @@
 # Some useful associations relevant to this assignment:
 # 1 Imperial Gallon = 4.54609188 litres
 # 1 Mile = 1.609344 kilometres
-def converter(mpg)
-  kml=(mpg*1.609344)/4.54609188;
-  return kml.round(2)
+def converter(miles_per_galon)
+  kilometers_per_liter=(miles_per_galon*1.609344/4.54609188).round(2)
 end
