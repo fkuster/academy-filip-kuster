@@ -22,6 +22,43 @@
 # Columns may only contain integers: 1..N (N included)
 
 class Sudoku
+  def initialize(sudoku)
+    @sudoku=sudoku
+  end
   def is_valid
+
+    begin
+      # padali su mi testovi na ovom dijelu jer kad matrica nije kvadratna ova funkcija baca error,
+      # a vidim da u 2. tesu matrica nije kvadratna
+      columns=@sudoku.transpose
+    rescue
+
+    end
+    rows_num=@sudoku.length
+    my_array=(1..rows_num).to_a
+
+    #provjeri da li su svi stupci i redovi jednake duljine
+    @sudoku.each do |row|
+      if  row.length!=rows_num
+        return false
+      end
+    end
+
+    #provjeri da li svi redovi imaju vrijednosti od 1..n
+    @sudoku.each do |row|
+      if row.uniq.sort == my_array
+      else return false
+      end
+    end
+
+    #provjeri da li svi stupci imaju vrijednosti od 1..n
+    columns.each do |row|
+      if row.uniq.sort == my_array
+      else return false
+      end
+    end
+
+
+    return true
   end
 end
