@@ -4,8 +4,7 @@
 
 def sort_it(list_, n)
  hash={}
- words_array=list_.split(",")
- words_array.each{|word| word.strip!}
+ words_array=list_.split(", ")
  words_array.each{|word| hash[word]=word[n-1]}
  sorted=hash.sort_by{|k, v| v}
  sorted.map{|k,v| "#{k}"}.join(', ')
