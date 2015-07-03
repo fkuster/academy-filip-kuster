@@ -18,6 +18,8 @@
 
 class String
   def dashify
-    self.gsub(",","-").gsub(" ","-").gsub("_","-")
+    #self.gsub(",","-").gsub(" ","-").gsub("_","-")
+    self.gsub(/[,_ ]/,"-")
+
   end
 end
