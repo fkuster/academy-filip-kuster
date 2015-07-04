@@ -1,13 +1,13 @@
 Rails.application.routes.draw do
-get 'welcome' => 'welcome#index'
-get 'time' => 'welcome#time'
+get 'welcome'               => 'welcome#index', :as => "welcome"
+get 'time'                  => 'welcome#time',  :as => "time"
 
-get 'gallery' => 'gallery#index'
-get 'gallery/:image_number' => 'gallery#show'
+get 'gallery'               => 'gallery#index', :as => "gallery"
+get 'gallery/:image_number' => 'gallery#show',  :as => "gallery_show"
 
-get 'text' => 'text#play'
+get 'text'                  => 'text#play',     :as => "text"
 
-get 'goodbye' => 'goodbye#bye'
+get 'goodbye'               => 'goodbye#bye',   :as => "goodbye"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
