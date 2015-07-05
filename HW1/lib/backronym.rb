@@ -53,6 +53,7 @@ end
 def make_backronym(string)
 
   string.upcase!
-  char_array=string.split("")
-  char_array.map{|char| dictionary[char]}.join(" ")
+  string.split("")
+    .map{|char| dictionary[char]}
+    .join(" ")
 end

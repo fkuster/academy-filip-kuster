@@ -25,30 +25,35 @@ class Sudoku
   def initialize(sudoku)
     @sudoku=sudoku
   end
-  def is_valid
 
+  def check_columns?(sorted_sudoku_members)
     begin
       columns=@sudoku.transpose
     rescue
-      return false
+     return false
     end
-    rows_num=@sudoku.length
-    sorted_sudoku_members=(1..rows_num).to_a
-
-    #check if all rows and columns are the same size
-    @sudoku.each do |row|
-        return false if row.length!=rows_num
-    end
-
-    #check if the all rows have values in range from 1 to N
-    @sudoku.each do |row|
-      return false if row.uniq.sort != sorted_sudoku_members
-    end
-
-    #check if the all columns have values in range from 1 to N
     columns.each do |row|
       return false if row.uniq.sort != sorted_sudoku_members
     end
-    return true
+     true
+  end
+
+  def check_rows?(sorted_sudoku_members)
+    @sudoku.each do |row|
+      return false if row.uniq.sort != sorted_sudoku_members
+    end
+     true
+  end
+
+  def check_size?
+    @sudoku.each do |row|
+        return false if row.length!=@sudoku.length
+    end
+     true
+  end
+
+  def is_valid
+    sorted_sudoku_members=(1..@sudoku.length).to_a
+    check_columns?(sorted_sudoku_members)&&check_rows?(sorted_sudoku_members)&&check_size?
   end
 end

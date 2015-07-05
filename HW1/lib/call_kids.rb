@@ -47,7 +47,7 @@ class Mother < Person
     @kids=kids
   end
   def kid_names
-    kids.map{|kid| kid.name}
+    kids.map(&:name)
   end
   def call_kids
     kids.map{|kid| "Calling #{kid.name} on #{kid.telephone_number} ..."}
