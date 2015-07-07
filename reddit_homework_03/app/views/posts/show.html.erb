@@ -4,13 +4,13 @@
 
 <%=@post.title%>
 <%=@post.content%>
-<% if @post.comments.count>0  %>
+<%if @post.comments.count>0  %>
     <%=@post.comments.count%>
     <% @post.comments.each do |comment|%>
-    <%= comment.content%>
-    <%="created #{time_ago_in_words(post.created_at)} ago"%>
-    <br>
-    <% end%>
+      <%= comment.content%>
+      <%="created #{time_ago_in_words(post.created_at)} ago"%>
+      <br>
+    <%end%>
   <%else%>
-    <%= "No comments yet"%>
+    <%="No comments yet"%>
 <%end%>

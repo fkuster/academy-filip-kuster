@@ -3,8 +3,8 @@
 <br>
 
 <%@subreddit.posts.each do |post| %>
-<%= link_to post.title ,subreddit_post_path(subreddit_id: post.subreddit.id, id: post.id) %>
-<%="created #{time_ago_in_words(post.created_at)} ago"%>
-<%="Number of comments: #{post.comments.count}"%>
-<br>
-<%end %>
+  <%= link_to post.title ,subreddit_post_path(subreddit_id: post.subreddit.id, id: post.id) %>
+  <%="created #{time_ago_in_words(post.created_at)} ago"%>
+  <%="Number of comments: #{post.comments.count}"%>
+  <br>
+<%end%>
