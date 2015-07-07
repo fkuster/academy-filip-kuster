@@ -1,6 +1,6 @@
 <%@posts.each do |post| %>
 <%= link_to post.title ,subreddit_post_path(subreddit_id: post.subreddit.id, id: post.id) %>
-<%="#{time_ago_in_words(post.created_at)} ago"%>
+<%="created #{time_ago_in_words(post.created_at)} ago"%>
 <%= link_to post.subreddit.name,subreddit_path(id: post.subreddit.id)%>
 
 <%="Number of comments: #{post.comments.count}"%>
