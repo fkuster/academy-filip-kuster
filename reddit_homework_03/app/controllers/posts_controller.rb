@@ -1,8 +1,8 @@
 class PostsController < ApplicationController
 
   def show
-      @subreddit=Subreddit.find(params[:subreddit_id].to_i)
-      @post=@subreddit.posts.find(params[:id].to_i)
+      @subreddit=Subreddit.find(params[:subreddit_id])
+      @post=@subreddit.posts.find(params[:id])
   end
 
 end
