@@ -1,0 +1,15 @@
+<%=@subreddit.name%>
+<%=@subreddit.description%>
+<br>
+
+<%=@post.title%>
+<%=@post.content%>
+<% if @post.comments.count>0  %>
+    <%=@post.comments.count%>
+    <% @post.comments.each do |comment|%>
+    <%= comment.content%>
+    <%="#{time_ago_in_words(post.created_at)} ago"%>
+    <% end%>
+  <%else%>
+    <%= "No comments yet"%>
+<%end%>
