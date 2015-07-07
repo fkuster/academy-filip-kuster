@@ -26,26 +26,28 @@ class Sudoku
     @sudoku=sudoku
   end
 
-  def check_columns?(sorted_sudoku_members)
-    begin
-      columns=@sudoku.transpose
-    rescue
-     return false
-    end
-    columns.each do |row|
-      return false if row.uniq.sort != sorted_sudoku_members
+  def sorted_sudoku_members
+    @sorted_sudoku_members ||= (1..@sudoku.length).to_a
+  end
+
+  def column_elements_valid?
+    sorted_sudoku_members
+    columns=@sudoku.transpose
+    columns.each do |column|
+      return false if column.uniq.sort != @sorted_sudoku_members
     end
      true
   end
 
-  def check_rows?(sorted_sudoku_members)
+  def row_elements_valid?
+    sorted_sudoku_members
     @sudoku.each do |row|
-      return false if row.uniq.sort != sorted_sudoku_members
+      return false if row.uniq.sort != @sorted_sudoku_members
     end
      true
   end
 
-  def check_size?
+  def column_and_row_size_equal?
     @sudoku.each do |row|
         return false if row.length!=@sudoku.length
     end
@@ -53,7 +55,6 @@ class Sudoku
   end
 
   def is_valid
-    sorted_sudoku_members=(1..@sudoku.length).to_a
-    check_columns?(sorted_sudoku_members)&&check_rows?(sorted_sudoku_members)&&check_size?
+    column_and_row_size_equal?&&column_elements_valid?&&row_elements_valid?
   end
 end
