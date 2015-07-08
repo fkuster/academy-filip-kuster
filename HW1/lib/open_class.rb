@@ -17,4 +17,9 @@
 # But also note that most of the time while we are in a Class definition, self comes implicitly.
 
 class String
+  def dashify
+    #self.gsub(",","-").gsub(" ","-").gsub("_","-")
+    gsub(/[,_ ]/,"-")
+
+  end
 end

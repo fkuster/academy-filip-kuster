@@ -51,4 +51,9 @@ def dictionary
 end
 
 def make_backronym(string)
+
+  string.upcase!
+  string.split("")
+    .map{|char| dictionary[char]}
+    .join(" ")
 end

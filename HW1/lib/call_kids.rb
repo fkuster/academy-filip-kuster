@@ -25,11 +25,32 @@
 # Use the super keyword in the Child and Mother constructor (i.e. initialize method)
 
 class Person
+  attr_accessor :name
+  def initialize(name)
+    @name=name
+  end
 end
 
 class Child < Person
+  attr_accessor :telephone_number
+  def initialize(name,telephone_number)
+    super(name)
+    @telephone_number=telephone_number
+  end
 end
 
 
 class Mother < Person
+  attr_accessor :kids
+  def initialize(name,kids)
+    super(name)
+    @kids=kids
+  end
+  def kid_names
+    kids.map(&:name)
+  end
+  def call_kids
+    kids.map{|kid| "Calling #{kid.name} on #{kid.telephone_number} ..."}
+  end
+
 end
