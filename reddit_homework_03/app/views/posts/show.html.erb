@@ -4,7 +4,7 @@
 
 <%= @post.title %>
 <%= @post.content %>
-<% if @post.comments.count.any? %>
+<% if @post.comments.any? %>
   <%= @post.comments.count %>
     <% @post.comments.each do |comment| %>
       <%= comment.content %>
