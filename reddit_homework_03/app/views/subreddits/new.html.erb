@@ -1,0 +1,9 @@
+<%= render "layouts/header", title: "frontpage",subreddit_id:0,disabled:true%>
+<%= form_for @subreddit do |f| %>
+<%= f.text_field :name %>
+<%= f.text_field :description %>
+<%= f.submit :send %>
+<% f.object.errors.full_messages.each do |error| %>
+<%= error %>
+<% end %>
+<% end %>

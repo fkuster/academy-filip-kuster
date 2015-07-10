@@ -1,10 +1,28 @@
-<%= @subreddit.name %>
-<%= @subreddit.description %>
-<br>
+<%= render "layouts/header", title: @subreddit.name,subreddit_id:@subreddit.id,disabled:false%>
+<div class="row">
+  <div class="col-lg-2 pull-right">
+    <h3>Description:</h3>
+    <%= @subreddit.description %>
+  </div>
+</div>
+<div class="well col-lg-10">
 
-<% @subreddit.posts.each do |post| %>
-  <%= link_to post.title ,subreddit_post_path(subreddit_id: post.subreddit.id, id: post.id) %>
-  <%= "created #{time_ago_in_words(post.created_at)} ago" %>
-  <%= "Number of comments: #{post.comments.count}" %>
-  <br>
-<% end %>
+  <% @subreddit.posts.each do |post| %>
+
+    <div class="row">
+
+      <div class="col-lg-2">
+        178
+      </div>
+      <div class="col-lg-10">
+        <%= link_to post.title ,subreddits_post_path(subreddit_id: post.subreddit.id, id: post.id) %>
+
+        <br>
+        <%= "submitted #{time_ago_in_words(post.created_at)} ago by #{post.creator_name}" %>
+        <br>
+        <%= " #{post.comments.count} comments" %>
+      </div>
+    </div>
+    <hr>
+  <% end %>
+</div>

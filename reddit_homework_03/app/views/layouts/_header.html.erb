@@ -1,0 +1,24 @@
+<div class="row">
+  <div class="col-lg-12">
+    <% @subreddits.each do |sub| %>
+      <%= link_to sub.name.upcase, subreddit_path(id:sub.id) %>
+    <% end %>
+  </div>
+  <div class="row">
+    <div class="col-lg-4">
+    <h3>Tidder</h3>
+    <h5>INFINUM STUDENT ACADEMY</h5>
+    <h5>R E D D I T   C L O N E   P R O J E C T</h5>
+    </div>
+    <div class="col-lg-5">
+      <h1>
+        <%= title %>
+      </h1>
+    </div>
+
+  <div class="col-lg-3">
+    <%= button_to "new Post", posts_path(subreddit_id:subreddit_id), :class => "btn btn-danger",:disabled=>disabled, :method => :get  %>
+    <%= button_to "new subreddit", subreddits_new_path, :class => "btn btn-default",:method => :get  %>
+  </div>
+  </div>
+</div>
