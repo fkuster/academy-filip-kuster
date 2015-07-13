@@ -1,5 +1,5 @@
 <%= render "layouts/header", title: "frontpage",subreddit_id:0,disabled:true%>
-<%= form_for @post do |f| %>
+<%= form_for @post,:url => subreddit_posts_path  do |f| %>
 <%= f.text_field :title %>
 <%= f.text_field :content %>
 <%= f.submit :send %>
