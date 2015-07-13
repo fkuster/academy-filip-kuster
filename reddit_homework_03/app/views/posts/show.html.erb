@@ -13,8 +13,8 @@
       <%= "submitted #{time_ago_in_words(@post.created_at)} ago by #{@post.creator_name} in #{@subreddit.name}" %>
       <br>
       <%= @post.content %>
-      <%= button_to "Edit post", post_edit_path(subreddit_id:@subreddit.id,id:@post.id), :class => "btn btn-default", :method => :get %>
-      <%= button_to "Delete post", post_destroy_path(id:@post.id), :class => "btn btn-danger", :method => :delete  %>
+      <%= button_to "Edit post", edit_subreddit_post_path(subreddit_id:@subreddit.id,id:@post.id), :class => "btn btn-default", :method => :get %>
+      <%= button_to "Delete post", subreddit_post_path(id:@post.id), :class => "btn btn-danger", :method => :delete  %>
   </div>
 
   <div class="col-md-2">

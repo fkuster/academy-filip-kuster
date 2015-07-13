@@ -1,25 +1,25 @@
 Rails.application.routes.draw do
   root 'static_pages#index', as: :frontpage
-  get 'subreddits/new', to: 'subreddits#new'
-  get 'subreddits/:id', to: 'subreddits#show', as: :subreddit
+  #  get 'subreddits/new', to: 'subreddits#new'
+  #  get 'subreddits/:id', to: 'subreddits#show', as: :subreddit
 
 
-  post 'subreddits/', to: 'subreddits#create'
+  #  post 'subreddits/', to: 'subreddits#create'
 
-  get 'subreddits/:subreddit_id/posts/:id/edit', to: 'posts#edit', as: :post_edit
-  get 'subreddits/:subreddit_id/posts/new', to: 'posts#new', as: :posts
-  get 'subreddits/:subreddit_id/posts/:id', to: 'posts#show', as: :subreddits_post
-  post 'subreddits/:subreddit_id/posts/new', to: 'posts#create'
+  #  get 'subreddits/:subreddit_id/posts/:id/edit', to: 'posts#edit', as: :post_edit
+  #  get 'subreddits/:subreddit_id/posts/new', to: 'posts#new', as: :posts
+  #  get 'subreddits/:subreddit_id/posts/:id', to: 'posts#show', as: :subreddits_post
+  #  post 'subreddits/:subreddit_id/posts/new', to: 'posts#create'
 
-  patch 'subreddits/:subreddit_id/posts/:id/edit', to: 'posts#update'
-  delete 'subreddits/:subreddit_id/posts/:id', to: 'posts#destroy', as: :post_destroy
+  #  patch 'subreddits/:subreddit_id/posts/:id/edit', to: 'posts#update'
+    #delete 'subreddits/:subreddit_id/posts/:id', to: 'posts#destroy', as: :post_destroy
 
   resources :comments, only:[:create]
 
   #root 'static_pages#index'
-  #resources :subreddits, only: [:show, :new, :create] do
-#  resources :posts, only: [:show, :new, :create, :edit, :update, :destroy]
-#  end
+  resources :subreddits, only: [:show, :new, :create] do
+    resources :posts, only: [:show, :new, :create, :edit, :update, :destroy]
+  end
   #resources :comments, only[:create]
 
   # The priority is based upon order of creation: first created -> highest priority.

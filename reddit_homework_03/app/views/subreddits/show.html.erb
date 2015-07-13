@@ -15,7 +15,7 @@
         178
       </div>
       <div class="col-lg-10">
-        <%= link_to post.title ,subreddits_post_path(subreddit_id: post.subreddit.id, id: post.id) %>
+        <%= link_to post.title ,subreddit_post_path(subreddit_id: post.subreddit.id, id: post.id) %>
 
         <br>
         <%= "submitted #{time_ago_in_words(post.created_at)} ago by #{post.creator_name}" %>
