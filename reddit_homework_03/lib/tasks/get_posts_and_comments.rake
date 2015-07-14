@@ -15,7 +15,7 @@ task :get_posts => :environment do
   subreddits=Subreddit.all
   subreddits.each do |subreddit|
     response = HTTParty.get "https://www.reddit.com/r/#{subreddit.name}/new.json?sort=new"
-     response["data"]["children"].first(10).each do |item|
+    response["data"]["children"].first(10).each do |item|
 
         if item["data"]["selftext"].empty?
           content=item["data"]["url"]
@@ -23,14 +23,14 @@ task :get_posts => :environment do
           content=item["data"]["selftext"]
         end
 
-      post = subreddit.posts.create(title:item["data"]["title"],
+    post = subreddit.posts.create(title:item["data"]["title"],
                          creator_name:item["data"]["author"],
                          content:content)
 
 
-        puts "Post for #{subreddit.name} added!"
-        save_comments(item["data"]["permalink"],post)
+    puts "Post for #{subreddit.name} added!"
+    save_comments(item["data"]["permalink"],post)
 
-      end
+    send
   end
 end
