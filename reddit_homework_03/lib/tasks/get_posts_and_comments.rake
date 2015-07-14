@@ -31,6 +31,6 @@ task :get_posts => :environment do
     puts "Post for #{subreddit.name} added!"
     save_comments(item["data"]["permalink"],post)
 
-    send
+    end
   end
 end
