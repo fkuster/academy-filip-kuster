@@ -4,11 +4,18 @@
     <% @posts.each do |post| %>
 
         <div class="row">
+          <div id="post<%=post.id%>" class="col-lg-1">
+            <% if post.upvotes.empty? %>
+                <%= 0 %>
+              <%else%>
+                <%= post.upvotes[0][:counter]%>
+              <% end %>
 
-          <div class="col-lg-1">
-            178
           </div>
-          <div class="col-lg-11">
+          <div class="col-lg-1">
+            <%= link_to "Upvote",upvote_path(id: post.id),remote:true,:class=>"btn btn-success" %>
+          </div>
+          <div class="col-lg-10">
             <%= link_to post.title ,subreddit_post_path(subreddit_id: post.subreddit.id, id: post.id) %>
 
             <br>

@@ -4,6 +4,10 @@ class SubredditsController < ApplicationController
     @subreddit=Subreddit.new
   end
 
+  def index
+    @all_subreddits=Subreddit.sorted_desc.paginate(:page => params[:page], :per_page => 20)
+  end
+
   def show
       @subreddit=Subreddit.find(params[:id])
   end

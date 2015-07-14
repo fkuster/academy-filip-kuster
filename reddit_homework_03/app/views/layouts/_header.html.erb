@@ -3,6 +3,8 @@
     <% @subreddits.each do |sub| %>
       <%= link_to sub.name.upcase, subreddit_path(id:sub.id) %>
     <% end %>
+    <%= link_to "...", subreddits_path %>
+
   </div>
   <div class="row">
     <div class="col-lg-4">
@@ -19,6 +21,12 @@
   <div class="col-lg-3">
     <%= button_to "new Post", new_subreddit_post_path(subreddit_id:subreddit_id), :class => "btn btn-danger",:disabled=>disabled, :method => :get  %>
     <%= button_to "new subreddit", new_subreddit_path, :class => "btn btn-default",:method => :get  %>
+    <%= button_to "logout", destroy_user_session_path, :class => "btn btn-danger",:method => :delete  %>
+    <% if is_subscribed?(subreddit_id)%>
+      <%= link_to "unsubscribe", subscription_path(id:subreddit_id),remote:true, :class => "btn btn-success",:id=>"subscribe",:method => :delete unless current_page?(frontpage_path) %>
+    <% else %>
+      <%= link_to "subscribe", subscription_path(id:subreddit_id),remote:true, :class => "btn btn-success",:id=>"subscribe",:method => :get unless current_page?(frontpage_path)%>
+    <% end%>
   </div>
   </div>
 </div>

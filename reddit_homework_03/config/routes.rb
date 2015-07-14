@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   root 'static_pages#index', as: :frontpage
   #  get 'subreddits/new', to: 'subreddits#new'
   #  get 'subreddits/:id', to: 'subreddits#show', as: :subreddit
@@ -13,11 +14,12 @@ Rails.application.routes.draw do
 
   #  patch 'subreddits/:subreddit_id/posts/:id/edit', to: 'posts#update'
     #delete 'subreddits/:subreddit_id/posts/:id', to: 'posts#destroy', as: :post_destroy
-
+  get 'upvote/new/:id', to: 'upvotes#new', as: :upvote
   resources :comments, only:[:create]
+  resources :subscriptions, only:[:show, :destroy]
 
   #root 'static_pages#index'
-  resources :subreddits, only: [:show, :new, :create] do
+  resources :subreddits, only: [:show, :new, :create,:index] do
     resources :posts, only: [:show, :new, :create, :edit, :update, :destroy]
   end
   #resources :comments, only[:create]
