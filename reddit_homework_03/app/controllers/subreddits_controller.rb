@@ -1,7 +1,7 @@
 class SubredditsController < ApplicationController
 
   def new
-    @subreddit=Subreddit.new
+     @subreddit=Subreddit.new
   end
 
   def index
@@ -9,12 +9,12 @@ class SubredditsController < ApplicationController
   end
 
   def show
-      @subreddit=Subreddit.find(params[:id])
+     @subreddit=Subreddit.find(params[:id])
   end
 
 
   def create
-      @subreddit = Subreddit.new(user_params)
+      @subreddit = Subreddit.new(subreddit_params)
       if @subreddit.save
         redirect_to frontpage_path
       else
@@ -22,9 +22,10 @@ class SubredditsController < ApplicationController
       end
   end
 
-def user_params
-  params.require(:subreddit).permit(:name, :description)
-end
+  private
+    def subreddit_params
+      params.require(:subreddit).permit(:name, :description)
+    end
 
 
 

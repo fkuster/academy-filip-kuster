@@ -11,17 +11,13 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(all_params)
-    if @post.save
+    @subreddit = Subreddit.find(params[:subreddit_id])
+    @subreddit.posts.new(post_params)
+    if @subreddit.save
       redirect_to frontpage_path
     else
       render :new
     end
-  end
-  def all_params
-    all_params = params.require(:post).permit(:title, :content)
-    all_params[:subreddit_id]=params['subreddit_id']
-    all_params
   end
 
   def edit
@@ -30,10 +26,10 @@ class PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
-    if @post.update(all_params)
-    redirect_to frontpage_path
+    if @post.update(post_params)
+      redirect_to frontpage_path
     else
-    render :edit
+      render :edit
     end
   end
 
@@ -42,6 +38,10 @@ class PostsController < ApplicationController
     Post.find(params[:id]).destroy
     redirect_to frontpage_path
   end
+  private
+    def post_params
+      params.require(:post).permit(:title, :content)
 
+    end
 
 end

@@ -14,13 +14,17 @@ Rails.application.routes.draw do
 
   #  patch 'subreddits/:subreddit_id/posts/:id/edit', to: 'posts#update'
     #delete 'subreddits/:subreddit_id/posts/:id', to: 'posts#destroy', as: :post_destroy
+
   get 'upvote/new/:id', to: 'upvotes#new', as: :upvote
-  resources :comments, only:[:create]
+
   resources :subscriptions, only:[:show, :destroy]
 
   #root 'static_pages#index'
-  resources :subreddits, only: [:show, :new, :create,:index] do
-    resources :posts, only: [:show, :new, :create, :edit, :update, :destroy]
+  resources :subreddits, only: [:show, :new, :create] do
+    resources :posts, except: [:index] do
+      resources :comments, only:[:create]
+
+    end
   end
   #resources :comments, only[:create]
 

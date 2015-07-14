@@ -1,10 +1,9 @@
 task :get_posts => :environment do
-  def save_comments(permalink)
+  def save_comments(permalink,post)
     url=  "https://www.reddit.com#{permalink}".chomp
     response= HTTParty.get "#{url}.json"
     data= ActiveSupport::JSON.decode(response.body)
     children= data[1]["data"]["children"]
-    post=Post.last
     puts "      No comments for this post" if children.empty?
 
     children.each do |comment|
@@ -15,26 +14,23 @@ task :get_posts => :environment do
   end
   subreddits=Subreddit.all
   subreddits.each do |subreddit|
-    response= HTTParty.get "https://www.reddit.com/r/#{subreddit.name}/new.json?sort=new"
-    data= ActiveSupport::JSON.decode(response.body)
-    children= data["data"]["children"]
+    response = HTTParty.get "https://www.reddit.com/r/#{subreddit.name}/new.json?sort=new"
+    response["data"]["children"].first(10).each do |item|
 
-    10.times do |i|
-
-        if children[i]["data"]["selftext"].empty?
-          content=children[i]["data"]["url"]
+        if item["data"]["selftext"].empty?
+          content=item["data"]["url"]
         else
-          content=children[i]["data"]["selftext"]
+          content=item["data"]["selftext"]
         end
 
-        subreddit.posts.create(title:children[i]["data"]["title"],
-                         creator_name:children[i]["data"]["author"],
+    post = subreddit.posts.create(title:item["data"]["title"],
+                         creator_name:item["data"]["author"],
                          content:content)
 
 
-        puts "Post for #{subreddit.name} added!"
-        save_comments(children[i]["data"]["permalink"])
+    puts "Post for #{subreddit.name} added!"
+    save_comments(item["data"]["permalink"],post)
 
-      end
+    end
   end
 end
