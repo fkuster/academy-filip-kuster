@@ -4,9 +4,6 @@ class ApplicationController < ActionController::Base
 
   before_action :authenticate_user!,:subreddits
 
-  def current_user
-    session["warden.user.user.key"][0][0]
-  end
 
   protect_from_forgery with: :exception
   private

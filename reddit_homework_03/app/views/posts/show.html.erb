@@ -5,12 +5,7 @@
 
   <div class="col-md-1">
     <div id="post<%=@post.id%>" class="col-lg-1">
-      <% if @post.upvotes.empty? %>
-          <%= 0 %>
-        <%else%>
-          <%= @post.upvotes[0][:counter]%>
-        <% end %>
-
+          <%= @post.upvote.nil? ? 0 : @post.upvote.counter %>
     </div>
   </div>
   <div class="col-md-1">

@@ -16,7 +16,7 @@ class SubredditsController < ApplicationController
   def create
       @subreddit = Subreddit.new(subreddit_params)
       if @subreddit.save
-        @subreddit.subscriptions.create(user_id:current_user,subreddit_id:@subreddit.id)
+        @subreddit.subscriptions.create(user_id:session["warden.user.user.key"][0][0],subreddit_id:@subreddit.id)
         redirect_to frontpage_path
       else
         render :new
