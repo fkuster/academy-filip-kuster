@@ -14,7 +14,7 @@
     </div>
   </div>
   <div class="col-md-1">
-    <%= link_to "Upvote",upvote_path(id: @post.id),remote:true,:class=>"btn btn-success" %>
+    <%= link_to "Upvote",new_subreddit_post_upvote_path(subreddit_id:@subreddit.id,post_id:@post.id),remote:true,:class=>"btn btn-success" %>
   </div>
   <div class="col-md-8">
       <%= @post.title %>

@@ -5,7 +5,7 @@ class SubredditsController < ApplicationController
   end
 
   def index
-    @all_subreddits=Subreddit.sorted_desc.paginate(:page => params[:page], :per_page => 20)
+     @all_subreddits=Subreddit.sorted_desc.paginate(:page => params[:page], :per_page => 20)
   end
 
   def show
@@ -16,6 +16,7 @@ class SubredditsController < ApplicationController
   def create
       @subreddit = Subreddit.new(subreddit_params)
       if @subreddit.save
+        @subreddit.subscriptions.create(user_id:current_user,subreddit_id:@subreddit.id)
         redirect_to frontpage_path
       else
         render :new
