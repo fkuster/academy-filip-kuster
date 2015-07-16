@@ -1,8 +1,30 @@
 Rails.application.routes.draw do
-  root 'static_pages#index'
-  get 'subreddits/:id', to: 'subreddits#show', as: :subreddit
-  get 'subreddits/:subreddit_id/posts/:id', to: 'posts#show', as: :subreddit_post
-  
+  root 'static_pages#index', as: :frontpage
+  #  get 'subreddits/new', to: 'subreddits#new'
+  #  get 'subreddits/:id', to: 'subreddits#show', as: :subreddit
+
+
+  #  post 'subreddits/', to: 'subreddits#create'
+
+  #  get 'subreddits/:subreddit_id/posts/:id/edit', to: 'posts#edit', as: :post_edit
+  #  get 'subreddits/:subreddit_id/posts/new', to: 'posts#new', as: :posts
+  #  get 'subreddits/:subreddit_id/posts/:id', to: 'posts#show', as: :subreddits_post
+  #  post 'subreddits/:subreddit_id/posts/new', to: 'posts#create'
+
+  #  patch 'subreddits/:subreddit_id/posts/:id/edit', to: 'posts#update'
+    #delete 'subreddits/:subreddit_id/posts/:id', to: 'posts#destroy', as: :post_destroy
+
+
+
+  #root 'static_pages#index'
+  resources :subreddits, only: [:show, :new, :create] do
+    resources :posts, except: [:index] do
+      resources :comments, only:[:create]
+
+    end
+  end
+  #resources :comments, only[:create]
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -1,7 +1,24 @@
-<% @posts.each do |post| %>
-  <%= link_to post.title ,subreddit_post_path(subreddit_id: post.subreddit.id, id: post.id) %>
-  <%= "created #{time_ago_in_words(post.created_at)} ago" %>
-  <%= link_to post.subreddit.name,subreddit_path(id: post.subreddit.id) %>
-  <%= "Number of comments: #{post.comments.count}" %>
-  <br>
-<% end %>
+
+  <%= render "layouts/header", title: "frontpage",subreddit_id:0,disabled:true%>
+  <div class="well">
+    <% @posts.each do |post| %>
+
+        <div class="row">
+
+          <div class="col-lg-1">
+            178
+          </div>
+          <div class="col-lg-11">
+            <%= link_to post.title ,subreddit_post_path(subreddit_id: post.subreddit.id, id: post.id) %>
+
+            <br>
+            <%= "submitted #{time_ago_in_words(post.created_at)} ago by #{post.creator_name} in " %>
+            <%= link_to post.subreddit.name,subreddit_path(id: post.subreddit.id) %>
+            <br>
+            <%= " #{post.comments.count} comments" %>
+          </div>
+        </div>
+      <hr>
+    <% end %>
+  </div>
+  <%= will_paginate @posts %>
