@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   private
     def subreddits
       if user_signed_in?
-        user = User.find(current_user)
+        user = User.find(current_user.id)
         @subreddit_ids = user.subscriptions.pluck(:subreddit_id)
         @subreddits=Subreddit.find(@subreddit_ids)
       end

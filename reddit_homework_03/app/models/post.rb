@@ -1,8 +1,8 @@
 class Post < ActiveRecord::Base
   belongs_to :subreddit
   belongs_to :user
-  has_many :comments
-  has_one :upvote
+  has_many :comments, dependent: :destroy
+  has_one :upvote, dependent: :destroy
   validates :title, presence: true
   validates :content, presence: true
   validates :subreddit_id, presence: true
