@@ -6,5 +6,6 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   validates :nickname, presence: true, uniqueness: true
+  enum gender: [:male, :female]
 
 end

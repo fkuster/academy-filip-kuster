@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150714135521) do
+ActiveRecord::Schema.define(version: 20150720155722) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "content"
@@ -25,9 +25,11 @@ ActiveRecord::Schema.define(version: 20150714135521) do
     t.string   "title"
     t.text     "content"
     t.integer  "subreddit_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
     t.string   "creator_name"
+    t.integer  "upvotes_count"
+    t.integer  "comments_count"
   end
 
   create_table "subreddits", force: :cascade do |t|
@@ -66,6 +68,7 @@ ActiveRecord::Schema.define(version: 20150714135521) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.integer  "gender"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
