@@ -14,6 +14,7 @@ task :create_users => :environment do
   comments.each do |comment|
     user = User.new(email:"#{comment.author_name}@tidder.com",password:('0'..'z').to_a.shuffle.first(8).join,nickname:comment.author_name)
     if user.save
+      comment.user=user
       puts "User created"
     else
       puts "User exists"

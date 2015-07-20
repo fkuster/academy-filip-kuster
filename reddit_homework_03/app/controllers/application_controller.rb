@@ -7,9 +7,14 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :exception
 
-  def calculate_trending(time_posted,points)
+  def calculate_trending(post)
     current_time = DateTime.now
-    hours = (current_time.to_i-time_posted.to_i)/3600
+    hours = (current_time.to_i - post.created_at.to_i)/3600
+    if post.upvote.nil?
+      points=0
+    else
+      points=post.upvote.counter
+    end
     (points - 1)/(hours + 2)**1.8
   end
 

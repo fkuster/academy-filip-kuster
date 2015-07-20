@@ -21,14 +21,23 @@
     </div>
 
   <div class="col-lg-3">
-    <%= button_to "new Post", new_subreddit_post_path(subreddit_id:subreddit_id), :class => "btn btn-danger",:disabled=>disabled, :method => :get  %>
-    <%= button_to "new subreddit", new_subreddit_path, :class => "btn btn-default",:method => :get  %>
-    <%= button_to "logout", destroy_user_session_path, :class => "btn btn-danger",:method => :delete  %>
-    <% if is_subscribed?(subreddit_id)%>
-      <%= link_to "unsubscribe", subreddit_subscription_path(subreddit_id:subreddit_id,id:0),remote:true, :class => "btn btn-success",:id=>"subscribe",:method => :delete unless (current_page?(frontpage_path)||current_page?(subreddits_path)) %>
-    <% else %>
-      <%= link_to "subscribe", new_subreddit_subscription_path(subreddit_id:subreddit_id),remote:true, :class => "btn btn-success",:id=>"subscribe",:method => :get unless (current_page?(frontpage_path)||current_page?(subreddits_path))%>
-    <% end%>
+    <%= link_to "new post", new_subreddit_post_path(subreddit_id:subreddit_id), :class => "btn btn-danger",:disabled=>disabled, :method => :get  %>
+    <%= link_to "settings", settings_edit_path, :class => "btn btn-default",:method => :get  %>
+    <%= link_to "new subreddit", new_subreddit_path, :class => "btn btn-default",:method => :get  %>
+    <%= link_to "logout", destroy_user_session_path, :class => "btn btn-danger",:method => :delete  %>
+
   </div>
   </div>
+  <div class="row">
+    <div class= "pull-right">
+      <%if !disabled%>
+        <% if is_subscribed?(subreddit_id)%>
+          <%= link_to "unsubscribe", subreddit_subscription_path(subreddit_id:subreddit_id,id:0),remote:true, :class => "btn btn-success",:id=>"subscribe",:method => :delete unless (current_page?(frontpage_path)||current_page?(subreddits_path)) %>
+        <% else %>
+          <%= link_to "subscribe", new_subreddit_subscription_path(subreddit_id:subreddit_id),remote:true, :class => "btn btn-success",:id=>"subscribe",:method => :get unless (current_page?(frontpage_path)||current_page?(subreddits_path))%>
+        <% end%>
+      <%end%>
+  </div>
+  </div>
+
 </div>

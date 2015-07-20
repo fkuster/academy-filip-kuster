@@ -37,7 +37,7 @@
     <% @post.comments.sorted_desc.each do |comment| %>
     <div class="row">
         <div class="col-md-3">
-    <%= "#{time_ago_in_words(@post.created_at)} ago by #{@post.creator_name}" %>
+    <%= "#{time_ago_in_words(comment.created_at)} ago by #{comment.user.nickname}" %>
       </div>
     <br>
       <div class="col-md-9 pull-right">
