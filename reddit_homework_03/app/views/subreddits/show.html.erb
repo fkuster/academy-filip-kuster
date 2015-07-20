@@ -7,7 +7,7 @@
 </div>
 <div class="well col-lg-10">
 
-  <% @subreddit.posts.sorted_desc.each do |post| %>
+  <% @posts.each do |post| %>
 
     <div class="row">
 
@@ -29,3 +29,4 @@
     <hr>
   <% end %>
 </div>
+<%= will_paginate @posts %>

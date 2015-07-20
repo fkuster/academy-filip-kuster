@@ -16,6 +16,8 @@
       <h1>
         <%= title %>
       </h1>
+      <%= link_to "newest", url_for( :newest => 'true' ), :class => "btn btn-danger", :method => :get  %>
+      <%= link_to "trending", url_for( :trending => 'true' ), :class => "btn btn-danger", :method => :get  %>
     </div>
 
   <div class="col-lg-3">

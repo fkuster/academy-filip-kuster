@@ -6,6 +6,13 @@ class ApplicationController < ActionController::Base
 
 
   protect_from_forgery with: :exception
+
+  def calculate_trending(time_posted,points)
+    current_time = DateTime.now
+    hours = (current_time.to_i-time_posted.to_i)/3600
+    (points - 1)/(hours + 2)**1.8
+  end
+
   private
     def subreddits
       if user_signed_in?

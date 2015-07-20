@@ -10,6 +10,15 @@ class SubredditsController < ApplicationController
 
   def show
      @subreddit=Subreddit.find(params[:id])
+     if params[:trending]=="true"
+        @posts = @subreddit.posts.includes(:user).sorted_desc
+
+        @posts = @posts.sort_by{|post| calculate_trending(post.created_at,post.upvote.counter)}
+
+        @posts = @posts.reverse.paginate(:page => params[:page], :per_page => 20)
+     else
+        @posts=@subreddit.posts.includes(:user).sorted_desc.paginate(:page => params[:page], :per_page => 20)
+     end
   end
 
 

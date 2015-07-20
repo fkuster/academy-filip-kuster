@@ -1,7 +1,15 @@
 class StaticPagesController < ApplicationController
 
   def index
-     @posts=Post.where(subreddit_id:@subreddit_ids).includes(:user).sorted_desc.paginate(:page => params[:page], :per_page => 20)
+    if params[:trending]=="true"
+       @posts = Post.where(subreddit_id:@subreddit_ids).includes(:user).sorted_desc
+
+       @posts = @posts.sort_by{|post| calculate_trending(post.created_at,post.upvote.counter)}
+
+       @posts = @posts.reverse.paginate(:page => params[:page], :per_page => 20)
+    else
+       @posts=Post.where(subreddit_id:@subreddit_ids).includes(:user).sorted_desc.paginate(:page => params[:page], :per_page => 20)
+    end
   end
 
 end
