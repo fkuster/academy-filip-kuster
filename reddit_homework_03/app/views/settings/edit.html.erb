@@ -1,6 +1,6 @@
   <%= render "layouts/header", title:"Settings",subreddit_id:0,disabled:true%>
 
-  <%= simple_form_for @user,:url => users_update_path do |f| %>
+  <%= simple_form_for @user,:url => user_path(0) do |f| %>
    <div class="pull-right">
       <%= f.input :avatar, as: :file %>
       <%= image_tag @user.avatar.url(:thumb) %>

@@ -42,6 +42,7 @@ class PostsController < ApplicationController
     def post_params
       post_params=params.require(:post).permit(:title, :content)
       post_params[:user_id]=current_user.id
+      post_params[:creator_name]=current_user.nickname
       post_params
 
     end

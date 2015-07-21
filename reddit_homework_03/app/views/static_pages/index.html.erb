@@ -1,23 +1,24 @@
 
   <%= render "layouts/header", title: "frontpage",subreddit_id:0,disabled:true%>
-  <div class="well">
+  <div class="well border">
     <% @posts.each do |post| %>
 
         <div class="row">
           <div id="post<%=post.id%>" class="col-lg-1">
-            <%= post.upvote.nil? ? 0 : post.upvote.counter %>
-
-
+             <span class="vote">  <%= post.upvote.nil? ? 0 : post.upvote.counter %></span>
           </div>
+
           <div class="col-lg-1">
-            <%= link_to "Upvote",new_subreddit_post_upvote_path(subreddit_id:post.subreddit.id,post_id: post.id),remote:true,:class=>"btn btn-success" %>
+            <%= link_to "Upvote",new_subreddit_post_upvote_path(subreddit_id:post.subreddit.id,post_id: post.id),remote:true,:class=>"btn btn-default" %>
           </div>
-          <div class="col-lg-10">
-            <%= link_to post.title ,subreddit_post_path(subreddit_id: post.subreddit.id, id: post.id) %>
 
-            <br>
-            <%= "submitted #{time_ago_in_words(post.created_at)} ago by #{post.creator_name} in " %>
-            <%= link_to post.subreddit.name,subreddit_path(id: post.subreddit.id) %>
+          <div class="col-lg-10">
+            <div class="title">
+                <%= link_to post.title ,subreddit_post_path(subreddit_id: post.subreddit.id, id: post.id) %>
+            </div>
+
+            <%== "submitted <strong>#{time_ago_in_words(post.created_at)}</strong> ago by <span class='red'>#{post.creator_name}</span> in " %>
+            <span class="red">  <%= link_to post.subreddit.name,subreddit_path(id: post.subreddit.id) %></span>
             <br>
             <%= " #{post.comments.count} comments" %>
           </div>
