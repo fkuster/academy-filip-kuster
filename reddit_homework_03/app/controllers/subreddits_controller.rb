@@ -34,7 +34,9 @@ class SubredditsController < ApplicationController
 
   private
     def subreddit_params
-      params.require(:subreddit).permit(:name, :description)
+      subreddit_params= params.require(:subreddit).permit(:name, :description)
+      subreddit_params[:user_id]= current_user.id
+      subreddit_params
     end
 
 

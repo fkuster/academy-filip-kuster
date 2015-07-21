@@ -6,13 +6,15 @@
         <div class="row">
 
           <div class="col-lg-1">
-            178
+          <%= subreddit.posts.sum(:upvotes_count) %>
           </div>
           <div class="col-lg-11">
             <%= link_to subreddit.name ,subreddit_path(id: subreddit.id) %>
 
             <br>
-            <%= "submitted #{time_ago_in_words(subreddit.created_at)} ago" %>
+            <%== "submitted <strong>#{time_ago_in_words(subreddit.created_at)}</strong> ago by <span class='red'>#{subreddit.user.nickname}</span> in " %>
+            <span class="red">  <%= link_to subreddit.name,subreddit_path(id:subreddit.id) %></span>
+            <br>
             <br>
 
           </div>

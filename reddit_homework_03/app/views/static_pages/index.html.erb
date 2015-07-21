@@ -2,28 +2,31 @@
   <%= render "layouts/header", title: "frontpage",subreddit_id:0,disabled:true%>
   <div class="well border">
     <% @posts.each do |post| %>
+        <div class="post">
+          <div class="row">
+            <div id="post<%=post.id%>" class="col-lg-2">
 
-        <div class="row">
-          <div id="post<%=post.id%>" class="col-lg-1">
-             <span class="vote">  <%= post.upvotes.count %></span>
-          </div>
-
-          <div class="col-lg-1">
-            <%= link_to "Upvote",new_subreddit_post_upvote_path(subreddit_id:post.subreddit.id,post_id: post.id),remote:true,:class=>"btn btn-default" %>
-          </div>
-
-          <div class="col-lg-10">
-            <div class="title">
-                <%= link_to post.title ,subreddit_post_path(subreddit_id: post.subreddit.id, id: post.id) %>
+               <div class="vote">  <%= post.upvotes.count %></div>
+               <br>
+               <div class="voteButton">
+                 <%= link_to "Upvote",new_subreddit_post_upvote_path(subreddit_id:post.subreddit.id,post_id: post.id),remote:true,:class=>"btn btn-default bred" %>
+               </div>
             </div>
 
-            <%== "submitted <strong>#{time_ago_in_words(post.created_at)}</strong> ago by <span class='red'>#{post.user.nickname}</span> in " %>
-            <span class="red">  <%= link_to post.subreddit.name,subreddit_path(id: post.subreddit.id) %></span>
-            <br>
-            <%=  post.comments.count==1?"#{post.comments.count} comment" : "#{post.comments.count} comments" %>
+            <div class="col-lg-10">
+              <div class="title">
+                  <%= link_to post.title ,subreddit_post_path(subreddit_id: post.subreddit.id, id: post.id) %>
+              </div>
+
+              <%== "submitted <strong>#{time_ago_in_words(post.created_at)}</strong> ago by <span class='red'>#{post.user.nickname}</span> in " %>
+              <span class="red">  <%= link_to post.subreddit.name,subreddit_path(id: post.subreddit.id) %></span>
+              <br>
+              <%=  post.comments.count==1?"#{post.comments.count} comment" : "#{post.comments.count} comments" %>
+            </div>
           </div>
-        </div>
-      <hr>
+        <hr>
+      </div>
     <% end %>
   </div>
+
   <%= will_paginate @posts %>

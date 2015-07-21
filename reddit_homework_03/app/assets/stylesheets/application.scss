@@ -5,9 +5,9 @@
   font-weight: bold;
 }
 .vote{
-  padding-left:30px;
+  text-align: center;
   font-weight: bold;
-  font-size: 120%;
+  font-size: 150%;
 
 
 }
@@ -51,8 +51,8 @@
   border-style: solid;
   border-top: none;
   border-right: none;
-  border-bottom-width:1px;
-  border-bottom-color:#DCDCDB;
+  border-bottom:none;
+
 
 
 
@@ -104,4 +104,13 @@ font-size:90%;
 .padding{
   padding-top: 20px;
 
+}
+.voteButton{
+  display:none;
+  text-align: center;
+
+}
+.post{
+  min-height: 150px;
+  
 }
