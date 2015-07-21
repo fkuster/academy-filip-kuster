@@ -10,12 +10,7 @@ class ApplicationController < ActionController::Base
   def calculate_trending(post)
     current_time = DateTime.now
     hours = (current_time.to_i - post.created_at.to_i)/3600
-    if post.upvote.nil?
-      points=0
-    else
-      points=post.upvote.counter
-    end
-    (points - 1)/(hours + 2)**1.8
+    (post.upvotes.count - 1)/(hours + 2)**1.8
   end
 
   private

@@ -12,7 +12,7 @@
     <div class="row">
 
       <div id="post<%=post.id%>" class="col-lg-1">
-        <%= post.upvote.nil? ? 0 : post.upvote.counter %>
+        <%= post.upvotes.count %>
       </div>
       <div class="col-lg-1">
         <%= link_to "Upvote",new_subreddit_post_upvote_path(subreddit_id:@subreddit.id,post_id: post.id),remote:true,:class=>"btn btn-success" %>

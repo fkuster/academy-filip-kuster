@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   has_many :subscriptions, dependent: :destroy
   has_many :subreddits, through: :subscriptions
   has_many :comments
+  has_many :upvotes
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   validates :nickname, presence: true, uniqueness: true

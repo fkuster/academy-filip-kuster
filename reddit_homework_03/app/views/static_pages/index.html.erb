@@ -5,7 +5,7 @@
 
         <div class="row">
           <div id="post<%=post.id%>" class="col-lg-1">
-             <span class="vote">  <%= post.upvote.nil? ? 0 : post.upvote.counter %></span>
+             <span class="vote">  <%= post.upvotes.count %></span>
           </div>
 
           <div class="col-lg-1">
