@@ -14,7 +14,7 @@
   <div class="col-md-8">
       <%= @post.title %>
       <br>
-    <%= "submitted #{time_ago_in_words(@post.created_at)} ago by #{@post.creator_name} in #{@subreddit.name}" %>
+    <%= "submitted #{time_ago_in_words(@post.created_at)} ago by #{@post.user.nickname} in #{@subreddit.name}" %>
       <br>
       <%= @post.content %>
       <%= button_to "Edit post", edit_subreddit_post_path(subreddit_id:@subreddit.id,id:@post.id), :class => "btn btn-default", :method => :get %>
@@ -29,7 +29,7 @@
 </div>
 
 <div class="row">
-  <%= "#{@post.comments.count} comments - leave your mark"%>
+  <%=  @post.comments.count==1?"#{@post.comments.count} comment - leave your mark" : "#{@post.comments.count} comments - leave your mark" %>
   <%= render 'comment_form' %>
 </div>
 

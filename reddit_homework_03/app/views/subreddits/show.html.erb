@@ -21,9 +21,9 @@
         <%= link_to post.title ,subreddit_post_path(subreddit_id: post.subreddit.id, id: post.id) %>
 
         <br>
-        <%= "submitted #{time_ago_in_words(post.created_at)} ago by #{post.creator_name}" %>
+        <%= "submitted #{time_ago_in_words(post.created_at)} ago by #{post.user.nickname}" %>
         <br>
-        <%= " #{post.comments.count} comments" %>
+        <%=  post.comments.count==1?"#{post.comments.count} comment" : "#{post.comments.count} comments" %>
       </div>
     </div>
     <hr>

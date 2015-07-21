@@ -17,10 +17,10 @@
                 <%= link_to post.title ,subreddit_post_path(subreddit_id: post.subreddit.id, id: post.id) %>
             </div>
 
-            <%== "submitted <strong>#{time_ago_in_words(post.created_at)}</strong> ago by <span class='red'>#{post.creator_name}</span> in " %>
+            <%== "submitted <strong>#{time_ago_in_words(post.created_at)}</strong> ago by <span class='red'>#{post.user.nickname}</span> in " %>
             <span class="red">  <%= link_to post.subreddit.name,subreddit_path(id: post.subreddit.id) %></span>
             <br>
-            <%= " #{post.comments.count} comments" %>
+            <%=  post.comments.count==1?"#{post.comments.count} comment" : "#{post.comments.count} comments" %>
           </div>
         </div>
       <hr>
