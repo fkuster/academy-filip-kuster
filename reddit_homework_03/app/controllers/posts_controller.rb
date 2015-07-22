@@ -1,13 +1,13 @@
 class PostsController < ApplicationController
 
   def show
-      @subreddit=Subreddit.find(params[:subreddit_id])
-      @post=@subreddit.posts.find(params[:id])
-      @comment=Comment.new
+      @subreddit = Subreddit.find(params[:subreddit_id])
+      @post = @subreddit.posts.find(params[:id])
+      @comment = Comment.new
   end
 
   def new
-    @post=Post.new
+    @post = Post.new
   end
 
   def create
@@ -40,9 +40,7 @@ class PostsController < ApplicationController
   end
   private
     def post_params
-      post_params=params.require(:post).permit(:title, :content)
-      post_params[:user_id]=current_user.id
-      post_params
+      params.require(:post).permit(:title, :content).merge(user_id: current_user.id)
 
     end
 

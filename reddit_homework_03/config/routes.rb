@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   root 'static_pages#index', as: :frontpage
-  get '/settings/edit', to: 'settings#edit'
+  get '/settings/edit'
 
   resources :users, only:[:update]
   resources :subreddits, only: [:show, :new, :create,:index] do

@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 <div class="row menu border">
   <div class="col-lg-10">
      <% current_user.subreddits.each do |sub| %>
@@ -44,7 +44,7 @@
   <div class="row middle border">
     <div class="col-lg-4 col-lg-push-8">
        <% if is_subscribed?(subreddit_id)%>
-            <%= link_to "unsubscribe", subreddit_subscription_path(subreddit_id:subreddit_id,id:0),remote:true, :class => "btn btn-success",:id=>"subscribe",:method => :delete unless (current_page?(frontpage_path)||current_page?(subreddits_path)) %>
+            <%= link_to "unsubscribe", subreddit_subscription_path(subreddit_id:subreddit_id, id:0),remote:true, :class => "btn btn-success",:id=>"subscribe",:method => :delete unless (current_page?(frontpage_path)||current_page?(subreddits_path)) %>
        <% else %>
             <%= link_to "subscribe", new_subreddit_subscription_path(subreddit_id:subreddit_id),remote:true, :class => "btn btn-success",:id=>"subscribe",:method => :get unless (current_page?(frontpage_path)||current_page?(subreddits_path))%>
        <% end%>
