@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
-
+gem 'active_model_serializers'
+gem 'rocket_pants'
 gem "paperclip"
 gem 'bcrypt-ruby', '3.1.2'
 gem 'devise'
