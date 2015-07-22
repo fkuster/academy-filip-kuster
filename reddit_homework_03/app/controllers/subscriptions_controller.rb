@@ -1,11 +1,10 @@
 class SubscriptionsController < ApplicationController
 
   def new
-    Subscription.create(user_id:current_user.id,subreddit_id:params[:subreddit_id])
-  
+    current_user.subscriptions.create(subreddit_id:params[:subreddit_id])
   end
   def destroy
-    Subscription.find_by(user_id:current_user.id,subreddit_id:params[:subreddit_id]).destroy
+    current_user.subscriptions.find_by(subreddit_id:params[:subreddit_id]).destroy
 
   end
 end
