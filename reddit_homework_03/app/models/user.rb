@@ -5,6 +5,6 @@ class User < ActiveRecord::Base
   has_many :subreddits, through: :subscriptions
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  validates :nickname, presence: true, uniqueness: true
+  validates :nickname,uniqueness: true
 
 end
