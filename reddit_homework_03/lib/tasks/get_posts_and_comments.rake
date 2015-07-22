@@ -1,3 +1,4 @@
+
 task :get_posts => :environment do
   def save_comments(permalink,post)
     url=  "https://www.reddit.com#{permalink}".chomp
