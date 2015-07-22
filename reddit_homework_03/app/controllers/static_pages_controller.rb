@@ -1,6 +1,7 @@
 class StaticPagesController < ApplicationController
 
   def index
+    @subreddit_ids =current_ user.subreddits.pluck(:subreddit_id)
     if params[:trending]=="true"
        @posts = Post.where(subreddit_id:@subreddit_ids).includes(:user).sorted_desc
 
@@ -10,6 +11,7 @@ class StaticPagesController < ApplicationController
     else
        @posts=Post.where(subreddit_id:@subreddit_ids).includes(:user).sorted_desc.paginate(:page => params[:page], :per_page => 20)
     end
+
   end
 
 end
