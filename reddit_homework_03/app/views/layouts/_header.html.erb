@@ -1,6 +1,7 @@
+<<<<<<< HEAD
 <div class="row menu border">
   <div class="col-lg-10">
-    <% @subreddits.each do |sub| %>
+     <% current_user.subreddits.each do |sub| %>
       <%= link_to sub.name.upcase, subreddit_path(id:sub.id) %>
       &nbsp;&nbsp;&nbsp;
     <% end %>
