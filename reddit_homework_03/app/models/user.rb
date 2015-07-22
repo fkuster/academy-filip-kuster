@@ -7,9 +7,11 @@ class User < ActiveRecord::Base
   has_many :upvotes
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  validates :nickname, presence: true, uniqueness: true
+
+  validates :nickname,uniqueness: true
   enum gender: [:male, :female]
   has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "150x150>" }, :default_url => ":style/missing.png"
   validates_attachment_content_type :avatar, :content_type => /^image\/(jpg|jpeg|png)$/
+
 
 end
