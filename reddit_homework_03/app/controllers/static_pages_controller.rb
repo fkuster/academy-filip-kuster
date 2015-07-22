@@ -2,7 +2,7 @@ class StaticPagesController < ApplicationController
 
   def index
 
-    @subreddit_ids =current_user.subreddits.pluck(:subreddit_id)
+    @subreddit_ids = current_user.subreddits.pluck(:subreddit_id)
     if params[:trending]=="true"
        @posts = Post.where(subreddit_id:@subreddit_ids).includes(:user).sorted_desc
 
@@ -10,7 +10,7 @@ class StaticPagesController < ApplicationController
 
        @posts = @posts.reverse.paginate(:page => params[:page], :per_page => 20)
     else
-       @posts=Post.where(subreddit_id:@subreddit_ids).includes(:user).sorted_desc.paginate(:page => params[:page], :per_page => 20)
+       @posts = Post.where(subreddit_id:@subreddit_ids).includes(:user).sorted_desc.paginate(:page => params[:page], :per_page => 20)
     end
 
 

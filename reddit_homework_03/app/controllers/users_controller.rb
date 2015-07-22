@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
 
   def update
-    @user=User.find(current_user.id)
+    @user = User.find(current_user.id)
     if @user.update(user_params)
       redirect_to frontpage_path
     else
@@ -11,6 +11,6 @@ class UsersController < ApplicationController
   end
   private
     def user_params
-      post_params=params.require(:user).permit(:gender,:avatar)
+      params.require(:user).permit(:gender, :avatar, :nickname)
     end
 end
