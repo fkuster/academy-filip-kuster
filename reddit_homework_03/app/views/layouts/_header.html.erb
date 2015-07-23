@@ -19,7 +19,7 @@
     </div>
 
   <div class="col-lg-3">
-    <%= button_to "new Post", new_subreddit_post_path(subreddit_id:subreddit_id), :class => "btn btn-danger",:disabled=>disabled, :method => :get  %>
+    <%= button_to "new Post", new_subreddit_post_path(subreddit_id:subreddit_id ||= 0), :class => "btn btn-danger",:disabled=>disabled, :method => :get  %>
     <%= button_to "new subreddit", new_subreddit_path, :class => "btn btn-default",:method => :get  %>
     <%= button_to "logout", destroy_user_session_path, :class => "btn btn-danger",:method => :delete  %>
     <% if is_subscribed?(subreddit_id)%>
