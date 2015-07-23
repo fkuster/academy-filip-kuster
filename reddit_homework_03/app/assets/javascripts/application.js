@@ -15,3 +15,12 @@
 //= require turbolinks
 //= require_tree .
 //= require bootstrap
+$(document).ready(function() {
+  $( ".post" ).hover(
+    function() {
+      $(this).find('.voteButton').css('display','block')
+    }, function() {
+      $(this).find('.voteButton').css('display','none');
+    }
+  );
+});

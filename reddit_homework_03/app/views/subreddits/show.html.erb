@@ -1,28 +1,32 @@
 <%= render "layouts/header", title: @subreddit.name,subreddit_id:@subreddit.id,disabled:false%>
-<div class="row">
+
   <div class="col-lg-2 pull-right">
     <h3>Description:</h3>
     <%= @subreddit.description %>
   </div>
-</div>
+
 <div class="well col-lg-10">
 
-  <% @subreddit.posts.each do |post| %>
+  <% @posts.each do |post| %>
 
     <div class="row">
 
-      <div class="col-lg-2">
-        178
+      <div id="post<%=post.id%>" class="col-lg-1">
+        <%= post.upvotes.count %>
+      </div>
+      <div class="col-lg-1">
+        <%= link_to "Upvote",new_subreddit_post_upvote_path(subreddit_id:@subreddit.id,post_id: post.id),remote:true,:class=>"btn btn-success" %>
       </div>
       <div class="col-lg-10">
         <%= link_to post.title ,subreddit_post_path(subreddit_id: post.subreddit.id, id: post.id) %>
 
         <br>
-        <%= "submitted #{time_ago_in_words(post.created_at)} ago by #{post.creator_name}" %>
+        <%= "submitted #{time_ago_in_words(post.created_at)} ago by #{post.user.nickname}" %>
         <br>
-        <%= " #{post.comments.count} comments" %>
+        <%=  post.comments.count==1?"#{post.comments.count} comment" : "#{post.comments.count} comments" %>
       </div>
     </div>
     <hr>
   <% end %>
 </div>
+<%= will_paginate @posts %>

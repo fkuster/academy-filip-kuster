@@ -1,0 +1,47 @@
+  <%= render "layouts/header", title:"Settings",disabled:true%>
+
+  <%= simple_form_for @user,:url => user_path(0) do |f| %>
+   <div class="pull-right">
+      <%= f.input :avatar, as: :file %>
+      <%= image_tag @user.avatar.url(:thumb) %>
+      <br>
+      <br>
+   </div>
+
+    <%= f.label "Gender:   " %>
+    <%= f.select :gender, User.genders.keys  %>
+    <br>
+
+
+    <%= f.input :nickname %>
+    <br>
+    <br>
+    <%= f.button :submit %>
+    <br>
+    <br>
+  <% end %>
+
+  <div class="well col-lg-12">
+  <div class="row">
+     <div class="col-lg-3">
+       <h3>Subscribed subreddits<h3>
+     </div>
+  </div>
+  <hr>
+  <% @subscriptions.each do |subscription| %>
+
+     <div class="row">
+        <div class="col-lg-3">
+           <%= link_to "unsubscribe?", subreddit_subscription_path(subreddit_id:subscription.subreddit.id,id:0),remote:true, :class => "btn btn-default",:method => :delete %>
+        </div>
+        <div class="col-lg-9">
+          <strong> <h4><%= link_to subscription.subreddit.name ,subreddit_path(id:subscription.subreddit.id) %><h4></strong>
+
+        </div>
+    </div>
+    <hr>
+
+
+  <% end %>
+  <%= link_to "","#", :class => "btn btn-success invisible",  :id=>"subscribe" %>
+  </div>

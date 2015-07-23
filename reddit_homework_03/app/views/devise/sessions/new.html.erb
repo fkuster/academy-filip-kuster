@@ -1,0 +1,43 @@
+<div class="well border">
+  <div class="row ">
+    <div class="col-lg-4">
+      <div class="header">
+        <div class="title">Tidder</div>
+        <div class="subtitle"><span class="red">INFINUM</span> STUDENT ACADEMY</div>
+        <div class="desc">R  E  D  D  I  T &nbsp;  C  L  O  N  E &nbsp;  P  R  O  J  E  C  T</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class=" well middle border">
+  <div class="row">
+    <div class="col-md-2 col-md-offset-5">
+       <div class="signin">Sign-in</div>
+
+    </div>
+  </div>
+
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+<div class="row">
+  <div class="col-md-2 col-md-offset-5">
+    <div class="field">
+      <%= f.email_field :email, autofocus: true ,placeholder:"E-MAIL"%>
+    </div>
+
+    <div class="field">
+      <%= f.password_field :password, autocomplete: "off",placeholder:"PASSWORD" %>
+    </div>
+
+  </div>
+</div>
+</div>
+<div class="well border footer">
+  <div class="row">
+    <div class="actions col-md-2 col-md-offset-5">
+      <%= f.submit "sign-in", class:"btn bred"%>
+    </div>
+  </div>
+</div>
+
+  <% end %>

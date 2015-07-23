@@ -1,1 +1,120 @@
 @import 'bootstrap';
+
+.red{
+  color:#E60000;
+  font-weight: bold;
+}
+.vote{
+  text-align: center;
+  font-weight: bold;
+  font-size: 150%;
+
+
+}
+.bred{
+  background-color:#E60000;
+  color:white;
+  width:120px;
+}
+.subtitle{
+  font: 100% Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 65%;
+
+}
+.title{
+  font-weight: bold;
+  font-size: 150%;
+  padding:0px;
+}
+.signin{
+  font-weight: bold;
+  font-size: 150%;
+  text-align: center;
+}
+.desc{
+  font-size: 60%;
+}
+.header{
+
+  padding-left:100px;
+  padding-top:100px;
+}
+.footer{
+
+  padding-bottom:300px;
+}
+.border{
+
+  border-left-color:#E60000;
+  border-left-width: 2px;
+  border-style: solid;
+  border-top: none;
+  border-right: none;
+  border-bottom:none;
+
+
+
+
+}
+.borderGrey{
+
+  border-left-color:#DCDCDB;
+  border-style: solid;
+  border-left-width: 1px;
+  border-top: none;
+  border-right: none;
+  border-bottom:none;
+}
+
+.well{
+  border-radius: 0px;
+  margin:0px;
+}
+.middle{
+  background-color: white;
+  margin:0px;
+  min-height: 100px;
+
+
+}
+.actions{
+padding-left: 4%;
+}
+.menu{
+  background-color: #DCDCDB;
+  padding:10px;
+  margin-bottom: 10px;
+  margin:0px;
+}
+a {
+    color: black;
+    text-decoration: none;
+}
+a:hover
+{
+     color:#E60000;
+     text-decoration:none;
+     cursor:pointer;
+}
+.smaller{
+font-size:90%;
+
+}
+.padding{
+  padding-top: 20px;
+
+}
+.voteButton{
+  display:none;
+  text-align: center;
+
+}
+.post{
+  min-height: 150px;
+
+}
+.post .title a:visited{
+  color: #808080;
+
+}

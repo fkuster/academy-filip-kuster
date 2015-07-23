@@ -1,16 +1,20 @@
-<%= render "layouts/header", title: @subreddit.name,subreddit_id:0,disabled:true%>
+<%= render "layouts/header", title: @subreddit.name,subreddit_id:@subreddit.id,disabled:true%>
 
 <br>
 <div class="row">
 
   <div class="col-md-1">
-    178
+    <div id="post<%=@post.id%>" class="col-lg-1">
+          <%= @post.upvotes.count %>
+    </div>
   </div>
-
-  <div class="col-md-9">
+  <div class="col-md-1">
+    <%= link_to "Upvote",new_subreddit_post_upvote_path(subreddit_id:@subreddit.id,post_id:@post.id),remote:true,:class=>"btn btn-success" %>
+  </div>
+  <div class="col-md-8">
       <%= @post.title %>
       <br>
-      <%= "submitted #{time_ago_in_words(@post.created_at)} ago by #{@post.creator_name} in #{@subreddit.name}" %>
+    <%= "submitted #{time_ago_in_words(@post.created_at)} ago by #{@post.user.nickname} in #{@subreddit.name}" %>
       <br>
       <%= @post.content %>
       <%= button_to "Edit post", edit_subreddit_post_path(subreddit_id:@subreddit.id,id:@post.id), :class => "btn btn-default", :method => :get %>
@@ -25,15 +29,15 @@
 </div>
 
 <div class="row">
-  <%= "#{@post.comments.count} comments - leave your mark"%>
+  <%=  @post.comments.count==1?"#{@post.comments.count} comment - leave your mark" : "#{@post.comments.count} comments - leave your mark" %>
   <%= render 'comment_form' %>
 </div>
 
 <% if @post.comments.any? %>
-    <% @post.comments.each do |comment| %>
+    <% @post.comments.sorted_desc.each do |comment| %>
     <div class="row">
         <div class="col-md-3">
-    <%= "#{time_ago_in_words(@post.created_at)} ago by #{@post.creator_name}" %>
+    <%= "#{time_ago_in_words(comment.created_at)} ago by #{comment.user.nickname}" %>
       </div>
     <br>
       <div class="col-md-9 pull-right">
