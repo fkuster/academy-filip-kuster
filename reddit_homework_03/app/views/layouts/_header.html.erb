@@ -28,7 +28,7 @@
      </div>
      <div class="col-lg-2 border middle">
         <div class="padding">
-           <%= link_to "new post", new_subreddit_post_path(subreddit_id:subreddit_id), :class => "btn btn-danger btn-block smaller",:disabled=>disabled, :method => :get  %>
+           <%= link_to "new post", new_subreddit_post_path(subreddit_id:subreddit_id ||= 0  ), :class => "btn btn-danger btn-block smaller",:disabled=>disabled, :method => :get  %>
            <%= link_to "new subreddit", new_subreddit_path, :class => "btn btn-default btn-block smaller",:method => :get  %>
         </div>
      </div>
