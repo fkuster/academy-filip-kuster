@@ -1,4 +1,4 @@
-  <%= render "layouts/header", title:"Settings",subreddit_id:0,disabled:true%>
+  <%= render "layouts/header", title:"Settings",disabled:true%>
 
   <%= simple_form_for @user,:url => user_path(0) do |f| %>
    <div class="pull-right">
@@ -12,7 +12,7 @@
     <%= f.select :gender, User.genders.keys  %>
     <br>
 
-  
+
     <%= f.input :nickname %>
     <br>
     <br>
