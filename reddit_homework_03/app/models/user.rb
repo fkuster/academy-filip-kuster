@@ -8,10 +8,14 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  validates :nickname,uniqueness: true
+
   enum gender: [:male, :female]
   has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "150x150>" }, :default_url => ":style/missing.png"
   validates_attachment_content_type :avatar, :content_type => /^image\/(jpg|jpeg|png)$/
+
+  before_create do
+    self.token = SecureRandom.uuid
+  end
 
 
 end

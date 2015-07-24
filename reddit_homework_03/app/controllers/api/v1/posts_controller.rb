@@ -3,32 +3,32 @@ module Api
      class PostsController < ApiController
 
         def index
-           expose Subreddit.find(params[:subreddit_id]).posts.paginate(page: params[:page])
+           expose Subreddit.find(params[:subreddit_id]).posts.paginate(page: params[:page]), each_serializer: PostSerializer
         end
 
         def show
-           expose Subreddit.find(params[:subreddit_id]).posts.find(params[:id])
+           expose Subreddit.find(params[:subreddit_id]).posts.find(params[:id]), serializer: PostSerializer
         end
 
         def create
-           expose Subreddit.find(params[:subreddit_id]).posts.create(post_params)
+           expose Subreddit.find(params[:subreddit_id]).posts.create(post_params), serializer: PostSerializer
         end
 
         def update
-           expose Subreddit.find(params[:subreddit_id]).posts.find(params[:id]).update(post_params)
+           expose Subreddit.find(params[:subreddit_id]).posts.find(params[:id]).update(post_params), serializer: PostSerializer
         end
 
         def destroy
-           expose Subreddit.find(params[:subreddit_id]).posts.find(params[:id]).destroy
+           expose Subreddit.find(params[:subreddit_id]).posts.find(params[:id]).destroy, serializer: PostSerializer
         end
 
         def upvote
-          expose Subreddit.find(params[:subreddit_id]).posts.find(params[:id]).create
+          expose Subreddit.find(params[:subreddit_id]).posts.find(params[:id]).create, serializer: PostSerializer
         end
 
         private
           def post_params
-            params.require(:post).permit(:title, :content)
+            params.require(:post).permit(:title, :content).merge(user_id:@user.id)
           end
 
 
