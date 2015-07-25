@@ -1,32 +1,34 @@
 <%= render "layouts/header", title: @subreddit.name,subreddit_id:@subreddit.id,disabled:false%>
 
-  <div class="col-lg-2 pull-right">
-    <h3>Description:</h3>
+  <div class="col-md-4 pull-right bordert">
+    <div class="title">Description:</class="title"></div>
     <%= @subreddit.description %>
   </div>
 
-<div class="well col-lg-10">
+<div class="well borderr col-md-8">
 
   <% @posts.each do |post| %>
+     <div class="post">
+      <div class="row">
 
-    <div class="row">
+        <div id="post<%=post.id%>" class="col-md-2">
+           <div class="vote">  <%= post.upvotes.count %></div>
 
-      <div id="post<%=post.id%>" class="col-lg-1">
-        <%= post.upvotes.count %>
+          <div class="voteButton">
+            <%= link_to "Upvote",new_subreddit_post_upvote_path(subreddit_id:@subreddit.id,post_id: post.id),remote:true,:class=>"btn btn-default bred" %>
+          </div>
+        </div>
+        <div class="col-md-10">
+          <div class="title">
+             <%= link_to post.title ,subreddit_post_path(subreddit_id: post.subreddit.id, id: post.id) %>
+          </div>
+              <%== "submitted <strong>#{time_ago_in_words(post.created_at)}</strong> ago by <span class='red'>#{post.user.nickname}</span>" %>
+          <br>
+          <%=  post.comments.count==1?"#{post.comments.count} comment" : "#{post.comments.count} comments" %>
+        </div>
       </div>
-      <div class="col-lg-1">
-        <%= link_to "Upvote",new_subreddit_post_upvote_path(subreddit_id:@subreddit.id,post_id: post.id),remote:true,:class=>"btn btn-success" %>
-      </div>
-      <div class="col-lg-10">
-        <%= link_to post.title ,subreddit_post_path(subreddit_id: post.subreddit.id, id: post.id) %>
-
-        <br>
-        <%= "submitted #{time_ago_in_words(post.created_at)} ago by #{post.user.nickname}" %>
-        <br>
-        <%=  post.comments.count==1?"#{post.comments.count} comment" : "#{post.comments.count} comments" %>
-      </div>
+      <hr>
     </div>
-    <hr>
   <% end %>
 </div>
 <%= will_paginate @posts %>

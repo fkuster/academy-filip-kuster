@@ -1,6 +1,13 @@
 <%= render "layouts/header", title: "frontpage",disabled:true%>
-<%= simple_form_for @subreddit do |f| %>
-  <%= f.input :name %>
-  <%= f.input :description %>
-  <%= f.button :submit %>
-<% end %>
+
+<div class="row well border">
+
+  <div class="col-md-6">
+    <%= simple_form_for @subreddit do |f| %>
+      <%= f.input :name %>
+      <%= f.input :description %>
+      <%= f.button :submit, :class=>" btn bred" %>
+    <% end %>
+  </div>
+
+</div>

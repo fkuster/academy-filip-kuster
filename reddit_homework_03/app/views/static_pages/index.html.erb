@@ -4,7 +4,7 @@
     <% @posts.each do |post| %>
         <div class="post">
           <div class="row">
-            <div id="post<%=post.id%>" class="col-lg-2">
+            <div id="post<%=post.id%>" class="col-md-2">
 
                <div class="vote">  <%= post.upvotes.count %></div>
                <br>
@@ -13,7 +13,7 @@
                </div>
             </div>
 
-            <div class="col-lg-10">
+            <div class="col-md-10">
               <div class="title">
                   <%= link_to post.title ,subreddit_post_path(subreddit_id: post.subreddit.id, id: post.id) %>
               </div>

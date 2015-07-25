@@ -7,32 +7,41 @@
     <% end %>
     <%= link_to "...", subreddits_path %>
   </div>
-  <div class="col-lg-2">
+  <div class="col-md-2">
     <%=="Logged in as: <strong>#{current_user.nickname}</strong>"%>
   </div>
 </div>
 <div class="row border middle ">
-   <div class="col-lg-12">
-     <div class="col-lg-4 col-lg-push-1">
+   <div class="col-md-12">
+     <div class="col-md-4 col-md-push-1">
         <div class="title padding">  <%== link_to 'Tidder',frontpage_path%> </div>
         <div class="subtitle"><span class="red">INFINUM</span> STUDENT ACADEMY</div>
         <div class="desc">R  E  D  D  I  T &nbsp;  C  L  O  N  E &nbsp;  P  R  O  J  E  C  T</div>
      </div>
 
-     <div class="col-lg-4 borderGrey middle">
+     <div class="col-md-4 borderGrey middle">
        <div class="title padding">
          <%= title %>
        </div>
        <%= link_to "newest", url_for( :newest => 'true' ), :class => "btn btn-danger", :method => :get  %>
        <%= link_to "trending", url_for( :trending => 'true' ), :class => "btn btn-default", :method => :get  %>
+       <%if !disabled%>
+        &nbsp; | &nbsp;
+              <% if is_subscribed?(subreddit_id)%>
+                   <%= link_to "Unsubscribe?", subreddit_subscription_path(subreddit_id:subreddit_id, id:0),remote:true, :class => "btn btn-default btnsub",:id=>"subscribe",:method => :delete unless (current_page?(frontpage_path)||current_page?(subreddits_path)) %>
+              <% else %>
+                   <%= link_to "Subscribe?", new_subreddit_subscription_path(subreddit_id:subreddit_id),remote:true, :class => "btn btn-default",:id=>"subscribe",:method => :get unless (current_page?(frontpage_path)||current_page?(subreddits_path))%>
+              <% end%>
+
+       <%end%>
      </div>
-     <div class="col-lg-2 border middle">
+     <div class="col-md-2 border middle">
         <div class="padding">
            <%= link_to "new post", new_subreddit_post_path(subreddit_id:subreddit_id ||= 0  ), :class => "btn btn-danger btn-block smaller",:disabled=>disabled, :method => :get  %>
            <%= link_to "new subreddit", new_subreddit_path, :class => "btn btn-default btn-block smaller",:method => :get  %>
         </div>
      </div>
-     <div class="col-lg-2">
+     <div class="col-md-2">
         <div class="padding">
            <%= link_to "settings", settings_edit_path, :class => "btn btn-default btn-block smaller",:method => :get  %>
            <%= link_to "logout", destroy_user_session_path, :class => "btn btn-danger btn-block smaller",:method => :delete  %>
@@ -40,15 +49,3 @@
      </div>
    </div>
 </div>
-<%if !disabled%>
-  <div class="row middle border">
-    <div class="col-lg-4 col-lg-push-8">
-       <% if is_subscribed?(subreddit_id)%>
-            <%= link_to "unsubscribe", subreddit_subscription_path(subreddit_id:subreddit_id, id:0),remote:true, :class => "btn btn-success",:id=>"subscribe",:method => :delete unless (current_page?(frontpage_path)||current_page?(subreddits_path)) %>
-       <% else %>
-            <%= link_to "subscribe", new_subreddit_subscription_path(subreddit_id:subreddit_id),remote:true, :class => "btn btn-success",:id=>"subscribe",:method => :get unless (current_page?(frontpage_path)||current_page?(subreddits_path))%>
-       <% end%>
-
-    </div>
-  </div>
-<%end%>
