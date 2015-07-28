@@ -1,50 +1,64 @@
 <%= render "layouts/header", title: @subreddit.name,subreddit_id:@subreddit.id,disabled:true%>
 
-<br>
-<div class="row">
 
-  <div class="col-md-1">
-    <div id="post<%=@post.id%>" class="col-lg-1">
-          <%= @post.upvotes.count %>
-    </div>
-  </div>
-  <div class="col-md-1">
-    <%= link_to "Upvote",new_subreddit_post_upvote_path(subreddit_id:@subreddit.id,post_id:@post.id),remote:true,:class=>"btn btn-success" %>
-  </div>
-  <div class="col-md-8">
-      <%= @post.title %>
-      <br>
-    <%= "submitted #{time_ago_in_words(@post.created_at)} ago by #{@post.user.nickname} in #{@subreddit.name}" %>
-      <br>
-      <%= @post.content %>
-      <%= button_to "Edit post", edit_subreddit_post_path(subreddit_id:@subreddit.id,id:@post.id), :class => "btn btn-default", :method => :get %>
-      <%= button_to "Delete post", subreddit_post_path(id:@post.id), :class => "btn btn-danger", :method => :delete  %>
-  </div>
+<div class="row well border borderr col-md-8">
 
-  <div class="col-md-2">
-    <h3>Description:</h3>
-    <%= @subreddit.description %>
-  </div>
+  <div class="post">
 
-</div>
+      <div id="post<%=@post.id%>" class="col-lg-2">
+        <div class="vote">  <%= @post.upvotes.count %></div>
 
-<div class="row">
-  <%=  @post.comments.count==1?"#{@post.comments.count} comment - leave your mark" : "#{@post.comments.count} comments - leave your mark" %>
-  <%= render 'comment_form' %>
-</div>
 
-<% if @post.comments.any? %>
-    <% @post.comments.sorted_desc.each do |comment| %>
-    <div class="row">
-        <div class="col-md-3">
-    <%= "#{time_ago_in_words(comment.created_at)} ago by #{comment.user.nickname}" %>
+
+        <div class="voteButton">
+        <%= link_to "Upvote",new_subreddit_post_upvote_path(subreddit_id:@subreddit.id,post_id:@post.id),remote:true,:class=>"btn bred" %>
+        </div>
       </div>
-    <br>
-      <div class="col-md-9 pull-right">
-    <%= comment.content %>
+
+
+    <div class="col-md-10">
+      <div class="title">  <%= @post.title %></div>
+
+
+      <%== "submitted <strong>#{time_ago_in_words(@post.created_at)}</strong> ago by <span class='red'>#{@post.user.nickname}</span> in " %>
+      <span class="red">  <%= link_to @post.subreddit.name,subreddit_path(id: @post.subreddit.id) %></span>
+      <br>
+      <br>
+      <%= link_to "Edit post", edit_subreddit_post_path(subreddit_id:@subreddit.id,id:@post.id), :class => "btn btn-default", :method => :get %>
+      <%= link_to "Delete post", subreddit_post_path(id:@post.id), :class => "btn btn-danger", :method => :delete  %>
+      <br>
+      <br>
+        <%= @post.content %>
     </div>
+
+  </div>
+  <div class="row">
+    <div class="col-md-10 col-md-push-2">
+      <%==  @post.comments.count==1?"<strong>#{@post.comments.count} comment</strong>  - leave your mark" : "<strong>#{@post.comments.count} comments</strong> - leave your mark" %>
+      <%= render 'comment_form' %>
+      <br>
+      <br>
     </div>
-    <% end %>
-<% else %>
-    <%= "No comments yet" %>
-<% end %>
+  </div>
+
+  <div class="row">
+
+        <% if @post.comments.any? %>
+            <% @post.comments.sorted_desc.each do |comment| %>
+            <hr>
+            <div class="row">
+                <div class="col-md-10 col-md-push-2">
+                <%== "commented by <span class='red'>#{comment.user.nickname}</span> - <strong>#{time_ago_in_words(comment.created_at)}</strong> ago" %>
+                <div class="content">
+                  <%= comment.content %>
+                </div>
+
+            </div>
+            <% end %>
+        <% else %>
+            <%= "No comments yet" %>
+        <% end %>
+   </div>
+  </div>
+
+</div>

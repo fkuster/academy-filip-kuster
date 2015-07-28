@@ -11,10 +11,23 @@
 
 
 }
+
 .bred{
   background-color:#E60000;
   color:white;
-  width:120px;
+  width:auto;
+}
+.content{
+
+  padding-left:50px;
+}
+.btnsub{
+  border-left-color:#E60000;
+  border-left-width: 2px;
+  border-style: solid;
+  border-top-color:#DCDCDB;
+  border-right-color:#DCDCDB;
+  border-bottom-color:#DCDCDB;
 }
 .subtitle{
   font: 100% Helvetica, sans-serif;
@@ -53,7 +66,26 @@
   border-right: none;
   border-bottom:none;
 
+}
+.borderr{
 
+  border-left-color:#E60000;
+  border-width: 2px;
+  border-style: solid;
+  border-top: none;
+  border-right-color: #DCDCDB;
+  border-bottom:none;
+
+}
+.bordert{
+
+
+  border-top-width: 1px;
+  border-style: solid;
+  border-top-color: #DCDCDB;
+  border-left:none;
+  border-right:none;
+  border-bottom:none;
 
 
 }

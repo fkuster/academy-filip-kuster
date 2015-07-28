@@ -1,6 +1,7 @@
 <%= form_for [@subreddit, @post, @comment] do |f| %>
   <%= f.text_area :content %>
-  <%= f.submit :send,:class=> "btn btn-danger" %>
+  <br>
+  <%= f.submit :send,:class=> "btn bred" %>
   <% f.object.errors.full_messages.each do |error| %>
     <%= error %>
   <% end %>

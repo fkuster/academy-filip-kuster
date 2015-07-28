@@ -5,7 +5,7 @@ class Subreddit < ActiveRecord::Base
   belongs_to :user
   validates :name, presence: true, uniqueness: true, length: {minimum: 3, maximum: 20}
 
-  validates :description, length: {maximum: 500}
+  validates :description,presence:true, length: {maximum: 500}
   scope :sorted_desc,-> {order('updated_at DESC')}
 
 

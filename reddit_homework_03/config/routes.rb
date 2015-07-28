@@ -11,4 +11,21 @@ Rails.application.routes.draw do
       resources :comments, only:[:create]
     end
   end
+
+  namespace :api do
+     api version: 1, module: 'v1', allow_prefix: 'v' do
+        resources :subreddits, except: [:edit] do
+          resources :posts do
+            member do
+                get 'upvote'
+            end
+          end
+        end
+
+        resources :posts do
+          resources :comments, only: [:index,:create,:destroy]
+       end
+     end
+   end
+
 end
