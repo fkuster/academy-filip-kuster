@@ -19,13 +19,13 @@ RSpec.describe CommentsController, type: :controller do
     context "when valid" do
       it "creates a new Comment" do
         expect {
-          post :create, attr: valid_attributes
+          post :create, comment: valid_attributes
         }.to change(Comment, :count).by(1)
       end
       it "does send an email" do
         expect(ActionMailer::Base.deliveries.empty?).to eq(false)
       end
-      it "redirects to the index page" do
+      it "redirects to the subreddit page" do
         post :create, comment: valid_attributes
         expect(response).to redirect_to(subreddit_post_path)
       end
