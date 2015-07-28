@@ -23,7 +23,7 @@ module Api
         end
 
         def upvote
-          expose Subreddit.find(params[:subreddit_id]).posts.find(params[:id]).create, serializer: PostSerializer
+          expose Subreddit.find(params[:subreddit_id]).posts.find(params[:id]).upvotes.create(user_id:@user.id)
         end
 
         private

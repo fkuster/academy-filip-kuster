@@ -11,7 +11,7 @@
 
 
         <div class="voteButton">
-        <%= link_to "Upvote",upvote_subreddit_post_upvote_path(subreddit_id:@subreddit.id,post_id:@post.id),remote:true,:class=>"btn bred" %>
+        <%= link_to "Upvote",new_subreddit_post_upvote_path(subreddit_id:@subreddit.id,post_id:@post.id),remote:true,:class=>"btn bred" %>
         </div>
       </div>
 
