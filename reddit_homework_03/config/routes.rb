@@ -7,7 +7,11 @@ Rails.application.routes.draw do
   resources :subreddits, only: [:show, :new, :create,:index] do
     resources :subscriptions, only:[:new, :destroy]
     resources :posts, except: [:index] do
-      resources :upvotes, only:[:new]
+      resources :upvotes do
+        member do
+            get 'upvote'
+        end
+      end
       resources :comments, only:[:create]
     end
   end
