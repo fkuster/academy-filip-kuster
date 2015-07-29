@@ -2,9 +2,9 @@ require "rails_helper"
 RSpec.describe Comment, type: :model do
 
   context 'test order scope' do
-    let(:a) { FactoryGirl.create(:comment) }
-    let(:b) { FactoryGirl.create(:comment) }
-    let(:c) { FactoryGirl.create(:comment) }
+    let!(:a) { FactoryGirl.create(:comment) }
+    let!(:b) { FactoryGirl.create(:comment) }
+    let!(:c) { FactoryGirl.create(:comment) }
     it 'order by date' do
       expect(Comment.sorted_desc).to eq([c, b, a])
     end

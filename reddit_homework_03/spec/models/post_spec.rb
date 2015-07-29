@@ -2,9 +2,9 @@ require "rails_helper"
 RSpec.describe Post, type: :model do
 
   context 'test order scope' do
-    let(:sport) { FactoryGirl.build(:post, updated_at:Time.now) }
-    let(:infinum) { FactoryGirl.build(:post, updated_at:Time.now + 1) }
-    let(:gaming) { FactoryGirl.build(:post, updated_at:Time.now + 2) }
+    let(:sport) { FactoryGirl.create(:post, updated_at:Time.now) }
+    let(:infinum) { FactoryGirl.create(:post, updated_at:Time.now + 1) }
+    let(:gaming) { FactoryGirl.create(:post, updated_at:Time.now + 2) }
     it 'order by date' do
       expect(Post.sorted_desc).to eq([gaming, infinum, sport])
     end
