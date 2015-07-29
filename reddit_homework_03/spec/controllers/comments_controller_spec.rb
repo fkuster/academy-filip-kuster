@@ -3,12 +3,12 @@ RSpec.describe CommentsController, type: :controller do
 
   let(:user) { FactoryGirl.create(:user) }
   let(:subreddit) { FactoryGirl.create(:subreddit,name:"Test") }
-  let(:post) { FactoryGirl.create(:post,subreddit_id:subreddit.id) }
+  let(:subreddit_post) { FactoryGirl.create(:post,subreddit_id:subreddit.id) }
   let(:comment) { FactoryGirl.create(:comment) }
   before {sign_in user}
 
   let(:valid_attributes) {
-    { content:comment.content,subreddit_id:subreddit.id, post_id:post.id}
+    { content:comment.content}
   }
 
   let(:invalid_attributes) {
@@ -19,24 +19,24 @@ RSpec.describe CommentsController, type: :controller do
     context "when valid" do
       it "creates a new Comment" do
         expect {
-          post :create, comment: valid_attributes
-        }.to change(Comment, :count).by(1)
+          request.env['HTTP_REFERER'] = '/'
+          post :create, subreddit_id:subreddit.id, post_id:subreddit_post.id, comment: valid_attributes
+        }.to change(Comment, :count).by(2)
       end
       it "does send an email" do
         expect(ActionMailer::Base.deliveries.empty?).to eq(false)
+        ActionMailer::Base.deliveries.clear
       end
-      it "redirects to the subreddit page" do
-        post :create, comment: valid_attributes
-        expect(response).to redirect_to(subreddit_post_path)
-      end
+
     end
     context "with invalid" do
       it "re-renders new" do
-        post :create, comment: invalid_attributes
-        expect(response).to render_template(:new)
+        request.env['HTTP_REFERER'] = '/'
+        post :create, subreddit_id:subreddit.id, post_id:subreddit_post.id, comment: invalid_attributes
+        expect(response).to redirect_to('/')
       end
       it "does not send an email" do
-        expect(ActionMailer::Base.deliveries).to be_empty
+        expect(ActionMailer::Base.deliveries.empty?).to eq(true)
       end
     end
   end
